@@ -16,22 +16,6 @@
       "Web Terminal": "http://localhost:${port}/terminal/"
     },
     "active": true
-  },
-  "sqltools.connections": [
-    {
-      "namespace": "USER",
-      "connectionMethod": "Server and Port",
-      "showSystem": false,
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 32770,
-      "askForPassword": false,
-      "driver": "InterSystems IRIS",
-      "name": "objectscript-docker",
-      "username": "_SYSTEM",
-      "password": "SYS"
-    }
-  ],
-  "python.pythonPath": "/usr/local/bin/python3"
+  }
 
 }
