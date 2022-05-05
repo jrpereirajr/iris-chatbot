@@ -7,4 +7,6 @@
     set prop("AutheEnabled") = 48
     do ##class(Security.Services).Modify("%Service_CallIn",.prop)
 
+    zpm "load /home/irisowner/irisbuild/ -v":1:1
+
     halt
