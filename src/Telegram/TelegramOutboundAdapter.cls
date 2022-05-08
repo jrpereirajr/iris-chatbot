@@ -1,17 +1,15 @@
 Class Telegram.TelegramOutboundAdapter Extends Ens.OutboundAdapter
 {
 
-Property TelegramToken As %String;
-
 Property SSLConfiguration As %String;
 
 Property API As Telegram.API [ Private ];
 
-Parameter SETTINGS = "TelegramToken,SSLConfiguration";
+Parameter SETTINGS = "Credentials:Basic:credentialsSelector,SSLConfiguration";
 
 Method OnInit() As %Status
 {
-	set ..API = ##class(Telegram.API).%New(..TelegramToken, ..SSLConfiguration)
+	set ..API = ##class(Telegram.API).%New(..%CredentialsObj.Password, ..SSLConfiguration)
 	if '$isobject(..API) {
 		return 0
 	}
