@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+  <Document name="telegram-interop.ZPM">
+    <Module>
+      <Name>telegram-interop</Name>
+      <Version>1.0.0</Version>
+      <Description>IRIS Interoperability business hosts for Telegram integrations</Description>
+      <Packaging>module</Packaging>
+      <SourcesRoot>Telegram</SourcesRoot>
+      <Resource Name="Telegram.PKG"/>
+    </Module>
+  </Document>
+</Export>
