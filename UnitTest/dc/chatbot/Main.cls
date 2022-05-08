@@ -54,7 +54,7 @@ ClassMethod CreateTestProduction()
     
     // removing of settings used by original business hosts (replaced by mock versions)
     Do ##class(UnitTest.dc.chatbot.Utils).RemoveSetting(newClassName, "    <Setting Target=""Adapter"" Name=""SSLConfiguration"">")
-    Do ##class(UnitTest.dc.chatbot.Utils).RemoveSetting(newClassName, "    <Setting Target=""Adapter"" Name=""TelegramToken"">")
+    Do ##class(UnitTest.dc.chatbot.Utils).RemoveSetting(newClassName, "    <Setting Target=""Adapter"" Name=""Credentials"">")
     
     $$$TOE(st, $system.OBJ.Compile(newClassName))
 }
@@ -110,13 +110,13 @@ Method RecognizedMessageAsserts(Log)
     Set assertion = $$$MyAssertEquals(Log(3,"SourceClass"),"dc.chatbot.ToChatterbot")
     Set assertion = $$$MyAssertEquals(Log(3,"SourceMethod"),"ProcessRequest")
     Set assertion = $$$MyAssertTrue($Match(Log(3,"Text"),".*""ResponseText"":"".*"".*"))
-    Set assertion = $$$MyAssertTrue($Find(Log(3,"Text"),"""ResponseConf"":1}"))
+    Set assertion = $$$MyAssertTrue($Match(Log(3,"Text"),".*""ResponseConf"":[\d\.]+.*"))
     
     Set assertion = $$$MyAssertEquals(Log(4,"ConfigName"),"ChatbotRouter")
     Set assertion = $$$MyAssertEquals(Log(4,"SourceClass"),"dc.chatbot.ChatbotRouter")
     Set assertion = $$$MyAssertEquals(Log(4,"SourceMethod"),"S3")
     Set assertion = $$$MyAssertTrue($Match(Log(4,"Text"),".*""ResponseText"":"".*"".*"))
-    Set assertion = $$$MyAssertTrue($Find(Log(4,"Text"),"""ResponseConf"":1}"))
+    Set assertion = $$$MyAssertTrue($Match(Log(4,"Text"),".*""ResponseConf"":[\d\.]+.*"))
     
     Set assertion = $$$MyAssertEquals(Log(5,"ConfigName"),"ToTelegram")
     Set assertion = $$$MyAssertEquals(Log(5,"SourceClass"),"UnitTest.dc.chatbot.TelegramOperation")

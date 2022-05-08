@@ -12,11 +12,11 @@ XData ProductionDefinition
   </Item>
   <Item Name="FromTelegram" Category="" ClassName="dc.chatbot.FromTelegram" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="SSLConfiguration">ISC.FeatureTracker.SSL.Config</Setting>
-    <Setting Target="Adapter" Name="TelegramToken"></Setting>
+    <Setting Target="Adapter" Name="Credentials">telegram</Setting>
   </Item>
   <Item Name="ToTelegram" Category="" ClassName="Telegram.TelegramOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="SSLConfiguration">ISC.FeatureTracker.SSL.Config</Setting>
-    <Setting Target="Adapter" Name="TelegramToken"></Setting>
+    <Setting Target="Adapter" Name="Credentials">telegram</Setting>
   </Item>
 </Production>
 }
