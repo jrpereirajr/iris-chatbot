@@ -13,7 +13,6 @@ RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisbuild
 USER ${ISC_PACKAGE_MGRUSER}
 
 COPY src src
-COPY UnitTest UnitTest
 COPY module.xml module.xml
 COPY iris.script iris.script
 COPY requirements.txt requirements.txt
@@ -26,7 +25,7 @@ RUN chown -R ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisbuild
 
 USER ${ISC_PACKAGE_MGRUSER}
 
-ARG TESTS=0
+ARG TESTS=1
 
 # breaks the chatterbot installation
 # ENV PIP_TARGET=${ISC_PACKAGE_INSTALLDIR}/mgr/python
