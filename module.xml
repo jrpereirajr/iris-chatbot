@@ -12,9 +12,10 @@
           <Version>4.9.2</Version>
         </ModuleReference>
       </Dependencies>
-      <SourcesRoot>src/objectscript/</SourcesRoot>
+      <SourcesRoot>src</SourcesRoot>
+      <Resource Name="Telegram.PKG"/>
       <Resource Name="dc.chatbot.PKG"/>
-      <UnitTest Name="/UnitTest" Package="UnitTest" Phase="test"/>
+      <UnitTest Name="/src" Package="UnitTest" Phase="test"/>
     </Module>
   </Document>
 </Export>
