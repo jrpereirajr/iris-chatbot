@@ -1,14 +1,19 @@
 Class dc.chatbot.TelegramRequest Extends Ens.Request
 {
 
-Property Text As %String(MAXLEN = "");
+Property RequestText As %String(MAXLEN = "");
+
+Property RequestChatId As %String(MAXLEN = "");
 
 Storage Default
 {
 <Data name="TelegramRequestDefaultData">
 <Subscript>"TelegramRequest"</Subscript>
 <Value name="1">
-<Value>Text</Value>
+<Value>RequestText</Value>
+</Value>
+<Value name="2">
+<Value>RequestChatId</Value>
 </Value>
 </Data>
 <DefaultData>TelegramRequestDefaultData</DefaultData>

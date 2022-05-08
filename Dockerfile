@@ -13,7 +13,7 @@ RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisbuild
 USER ${ISC_PACKAGE_MGRUSER}
 
 COPY src src
-COPY tests tests
+COPY UnitTest UnitTest
 COPY module.xml module.xml
 COPY iris.script iris.script
 COPY requirements.txt requirements.txt

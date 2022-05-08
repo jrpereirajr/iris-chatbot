@@ -14,7 +14,7 @@
       </Dependencies>
       <SourcesRoot>src/objectscript/</SourcesRoot>
       <Resource Name="dc.chatbot.PKG"/>
-      <UnitTest Name="/tests" Package="UnitTest" Phase="test"/>
+      <UnitTest Name="/UnitTest" Package="UnitTest" Phase="test"/>
       <FileCopy Name="/src/python/" Target="${mgrdir}/python/"/>
     </Module>
   </Document>

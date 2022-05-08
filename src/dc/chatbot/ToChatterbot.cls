@@ -1,4 +1,4 @@
-Class dc.chatbot.ToChatbot Extends Ens.BusinessOperation
+Class dc.chatbot.ToChatterbot Extends Ens.BusinessOperation
 {
 
 /// Name of the chatbot
@@ -14,14 +14,15 @@ Parameter INVOCATION = "Queue";
 
 Parameter SETTINGS = "ChatbotName:Basic,LowConfidenceThreshold:Basic,DefaultLowConfidenceMsg:Basic";
 
-Method ProcessFileRequest(pRequest As dc.chatbot.ChatbotRequest, Output pResponse As dc.chatbot.ChatbotResponse) As %Status
+Method ProcessRequest(pRequest As dc.chatbot.ChatbotRequest, Output pResponse As dc.chatbot.ChatbotResponse) As %Status
 {
-    $$$TRACE("pRequest: "_pRequest.UserInputText)
+    $$$TRACE(##class(%ZEN.Auxiliary.altJSONProvider).%ObjectToAET(pRequest).%ToJSON())
     Set pResponse = ##class(dc.chatbot.ChatbotResponse).%New()
     Set chatbot = ..GetChatbot()
     Set resp = chatbot."get_response"(pRequest.UserInputText)
     Set pResponse.ResponseText = resp.text
     Set pResponse.ResponseConf = resp.confidence
+    $$$TRACE(##class(%ZEN.Auxiliary.altJSONProvider).%ObjectToAET(pResponse).%ToJSON())
     Return $$$OK
 }
 
@@ -45,17 +46,17 @@ Method GetChatbot() As %SYS.Python [ Language = python ]
         logic_adapters=adapters
     )
 
-    j = iris.gref('^j')
-    j['ChatbotName'] = self.ChatbotName
-    j['LowConfidenceThreshold'] = +self.LowConfidenceThreshold
-    j['DefaultLowConfidenceMsg'] = self.DefaultLowConfidenceMsg
+    gbl = iris.gref('^dc.chatbot.ToChatterbot')
+    gbl['ChatbotName'] = self.ChatbotName
+    gbl['LowConfidenceThreshold'] = +self.LowConfidenceThreshold
+    gbl['DefaultLowConfidenceMsg'] = self.DefaultLowConfidenceMsg
 
     path_to_file = '/tmp/my_export.json'
     if not exists(path_to_file):
         trainer = ChatterBotCorpusTrainer(chatbot)
         trainer.train('chatterbot.corpus.english')
         trainer.export_for_training(path_to_file)
-        j["trainned", str(datetime.now())] = 1
+        gbl["trainned", str(datetime.now())] = 1
 
     return chatbot
 }
@@ -64,7 +65,7 @@ XData MessageMap
 {
 <MapItems>
   <MapItem MessageType="dc.chatbot.ChatbotRequest">
-    <Method>ProcessFileRequest</Method>
+    <Method>ProcessRequest</Method>
   </MapItem>
 </MapItems>
 }
