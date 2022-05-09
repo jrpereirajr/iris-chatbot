@@ -99,11 +99,8 @@ Method SetWebhook(url As %String, filedir As %String, filename As %String) As %D
     
     Set writer=##class(%Net.MIMEWriter).%New()
     
-    Set status=writer.OutputToStream(SentHttpRequest.EntityBody)
-    if $$$ISERR(status) {do $SYSTEM.Status.DisplayError(status) Quit}
-
-    Set status=writer.WriteMIMEBody(RootMIMEPart)
-    if $$$ISERR(status) {do $SYSTEM.Status.DisplayError(status) Quit}
+	$$$TOE(status, writer.OutputToStream(SentHttpRequest.EntityBody))
+	$$$TOE(status, writer.WriteMIMEBody(RootMIMEPart))
        
      
 	//do SentHttpRequest.InsertFormData("url",url)
