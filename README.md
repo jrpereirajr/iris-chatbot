@@ -33,3 +33,34 @@ $ docker-compose build
 ```
 $ docker-compose up -d
 ```
+
+## Unit tests
+
+In order to execute the unit tests, run the following command in the shell terminal:
+
+```bash
+iris session iris "##class(%ZPM.PackageManager).Shell(\"test iris-chatbot -v\",1,1)"
+```
+
+## Setting up a Telegram bot
+
+In order to use a Telegram bot, follow these steps:
+
+- Create a Telegram bot
+  - Access the BotFather in using your Telegram account (https://telegram.me/BotFather)
+  - Enter the command `/newbot`
+  - Choose a name to your bot
+  - Choose a user name to your bot
+  - After those information, the BotFather will give you a token for your bot
+- Create a IRIS Interoperability credential to store yout bot's token
+    - Access the [Credentials Viewer](http://localhost:55038/csp/user/EnsPortal.Credentials.zen?$NAMESPACE=USER&$NAMESPACE=USER&) page
+    - Choose a name for the credential in the field `ID`
+    - Enter your bot's token in the `Password` field
+    - Save your credential
+- Setup the production
+    - Access the [Production Configuration](http://localhost:55038/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.chatbot.TelegramChatbotProduction) page
+    - Select the `FromTelegram` business service
+    - Find the field `Credentials` in the right panel, in the `Settings` tab, and choose the credentials for your telegram bot
+    - Save the changes by clicking in the `Apply` button
+
+Now you can start the production. Access your Telegram bot and start to chat. If everything is OK, you will receive a response from the production's chatbot after a few seconds.
