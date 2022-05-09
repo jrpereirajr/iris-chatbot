@@ -34,7 +34,7 @@ RUN /usr/irissys/bin/irispython -m pip install --upgrade pip && \
     /usr/irissys/bin/irispython -m pip install -r requirements.txt && \
     /usr/irissys/bin/irispython -m pip install chatterbot_corpus && \
     iris start IRIS && \
+	iris session IRIS < iris.script && \
     iris session iris "##class(%ZPM.PackageManager).Shell(\"load /opt/irisbuild -v\",1,1)" && \
     ([ $TESTS -eq 0 ] || iris session iris "##class(%ZPM.PackageManager).Shell(\"test $MODULE -v -only\",1,1)") && \
-	iris session IRIS < iris.script && \
     iris stop IRIS quietly
