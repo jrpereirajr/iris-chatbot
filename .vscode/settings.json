@@ -5,6 +5,8 @@
       "iris.script": "objectscript"
     },
   "objectscript.conn" :{
+    "host": "localhost",
+    "port": 55038,
     "ns": "USER",
     "username": "_SYSTEM",
     "password": "SYS",
